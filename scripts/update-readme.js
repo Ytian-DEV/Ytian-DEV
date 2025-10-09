@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
 /**
+<<<<<<< HEAD
  * Advanced README Auto-Updater
  * Automatically updates GitHub Profile README with latest information
+=======
+ * Script to auto-update GitHub Profile README
+ * This can be extended to fetch latest blog posts, stats, etc.
+>>>>>>> ecf00a4ba10d3a963f6fcb9b8147e18e65ebddac
  */
 
 const fs = require('fs');
@@ -15,6 +20,7 @@ class ReadmeUpdater {
 
   async updateReadme() {
     try {
+<<<<<<< HEAD
       console.log('🔄 Starting README update...');
       
       let readmeContent = fs.readFileSync(this.readmePath, 'utf8');
@@ -29,6 +35,29 @@ class ReadmeUpdater {
       // Update dynamic content sections
       readmeContent = this.updateDynamicSections(readmeContent);
       
+=======
+      let readmeContent = fs.readFileSync(this.readmePath, 'utf8');
+      
+      // Update last updated timestamp
+      const lastUpdated = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short'
+      });
+
+      // Add or update last updated section
+      if (readmeContent.includes('<!-- LAST_UPDATED -->')) {
+        readmeContent = readmeContent.replace(
+          /<!-- LAST_UPDATED -->[\s\S]*?<!-- LAST_UPDATED_END -->/,
+          `<!-- LAST_UPDATED -->\n**Last Updated:** ${lastUpdated}\n<!-- LAST_UPDATED_END -->`
+        );
+      }
+
+>>>>>>> ecf00a4ba10d3a963f6fcb9b8147e18e65ebddac
       fs.writeFileSync(this.readmePath, readmeContent);
       console.log('✅ README updated successfully!');
       
@@ -37,6 +66,7 @@ class ReadmeUpdater {
       process.exit(1);
     }
   }
+<<<<<<< HEAD
 
   getFormattedTimestamp() {
     return new Date().toLocaleDateString('en-US', {
@@ -107,3 +137,10 @@ if (require.main === module) {
 }
 
 module.exports = ReadmeUpdater;
+=======
+}
+
+// Run the updater
+const updater = new ReadmeUpdater();
+updater.updateReadme();
+>>>>>>> ecf00a4ba10d3a963f6fcb9b8147e18e65ebddac

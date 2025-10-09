@@ -14,13 +14,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+<<<<<<< HEAD
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+=======
+>>>>>>> ecf00a4ba10d3a963f6fcb9b8147e18e65ebddac
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+<<<<<<< HEAD
           cache: 'npm'
 
       - name: Install dependencies
@@ -39,14 +43,28 @@ jobs:
             echo "<!-- LAST_UPDATED: $(date -u) -->" >> README.md
           fi
 
+=======
+
+      - name: Update README
+        run: |
+          echo "🔄 Updating README with latest stats..."
+          # This is where you could run custom scripts
+          # to update your README automatically
+          
+>>>>>>> ecf00a4ba10d3a963f6fcb9b8147e18e65ebddac
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
+<<<<<<< HEAD
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "🔄 Auto-update README - $(date -u)"
             git push
           fi
+=======
+          git diff --staged --quiet || git commit -m "🔄 Auto-update README"
+          git push
+>>>>>>> ecf00a4ba10d3a963f6fcb9b8147e18e65ebddac
